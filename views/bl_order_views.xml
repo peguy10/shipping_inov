@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <record id="folder_transit_bl_tree" model="ir.ui.view">
+            <field name="name">folder.transit.bl.tree</field>
+            <field name="model">folder.transit.bl</field>
+            <field name="arch" type="xml">
+                <tree string="BL" create="false">
+                    <field name="name"/>
+                    <field name="customer_id"/>
+                    <field name="product_id"/>
+                    <field name="package"/>
+                    <field name="qty"/>
+                    <field name="package_uom_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="folder_transit_bl_form" model="ir.ui.view">
+            <field name="name">folder.transit.bl.form</field>
+            <field name="model">folder.transit.bl</field>
+            <field name="arch" type="xml">
+                <form string="BL Form">
+                    <header>
+                        <field  name="state" widget="statusbar" statusbar_visible="draft,sent"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" placeholder="Numero BL"/>4
+                        </h1>
+                    </div>
+                    <group string="Cargaison info">
+                        <field name="customer_id"/>
+                        <field name="product_id"/>
+                        <field name="package"/>
+                    </group>
+                    <group string="Quanitity Unit">
+                        <field name="qty"/>
+                        <field name="package_uom_id"/>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="folder_transit_bl_search" model="ir.ui.view">
+            <field name="name">folder.transit.bl.search</field>
+            <field name="model">folder.transit.bl</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name" string="Numero" filter_domain="[('name','ilike', self)]" />
+                    <field name="customer_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Client" name="customer_id" domain="[]" context="{'group_by':'customer_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="folder_transit_bl_action" model="ir.actions.act_window">
+            <field name="name">BL LIST</field>
+            <field name="res_model">folder.transit.bl</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="folder_transit_bl_search"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Creer un BL.
+                </p><p>
+                    BL est un document qui permet de suivre la Cargaison lors du transit
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="BLs" sequence="18" id="menu_bl_id" parent="transit_invoice.menu_folder_id" action="inov_shipping.folder_transit_bl_action" groups="transit_invoice.group_transit_manager"/>
+        <menuitem name="BLs" sequence="18" id="menu_bl_transit_id" parent="menu_folder_shipping_id" action="inov_shipping.folder_transit_bl_action" groups="transit_invoice.group_shipping_manager"/>
+    </data>
+</odoo>

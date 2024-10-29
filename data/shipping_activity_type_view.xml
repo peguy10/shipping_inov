@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     <!-- Add you code here -->
+        <record id="mail_act_rh_shipping_0" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+        <record id="mail_act_rh_shipping_1" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_2" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_3" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_4" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_5" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_6" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_7" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_8" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_9" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_10" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_11" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_12" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_13" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_14" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_15" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_acconage_16" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_17" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_18" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_19" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_20" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_21" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_22" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_23" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_24" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_25" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_26" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_27" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_28" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_29" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_30" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_31" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_32" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_33" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_34" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_35" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_36" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_37" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_39" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_40" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_41" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_42" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+         <record id="mail_act_rh_shipping_43" model="mail.activity.type">
+            <field name="name">1-Ordre de transit</field>
+            <field name="icon">fa-ship</field>
+            <field name="stages">ship</field>
+            <field name="res_model">folder.transit</field>
+        </record>
+
+    </data>
+</odoo>

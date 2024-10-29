@@ -1,0 +1,61 @@
+@font-face {font-family: Caudex;src: url("../font/Caudex/Caudex-Regular.ttf");}
+@font-face {font-family: Open_sans;src: url("../font/Open_Sans/OpenSans-Regular.ttf");}
+@font-face {font-family: Roboto;src: url("../font/Roboto/Roboto-Medium.ttf");}
+
+.lg_affecter_logement {
+    .o_kanban_view .o_kanban_record {
+        min-width: 50px!important;
+    }
+    .o_kanban_view.o_kanban_ungrouped .o_kanban_record{
+        width: 80px!important;
+    }
+}
+
+.kanban_note{
+    width: 400px!important;
+    margin-bottom: 10px !important;
+}
+.kanban_note_title_a,.kanban_note_title_b,.kanban_note_title{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 5px 0;
+}
+.kanban_note_title_a{
+    color:#0b263d;
+    text-transform:uppercase;
+}
+.kanban_note_record{
+    font-size: 14px;
+    font-family: Roboto, helvetica;
+    font-weight: 400;
+    color: #4c5155;
+}
+.kanban_note_img img{
+    border-style: none;
+    width: 100px;
+    float: left;
+    position: absolute;
+    margin-right: 100px;
+    top: 10px;
+}
+.kanban_note_details{
+    top:0px!important;
+    padding-left: 120px!important;
+}
+.kanban_note_logement{
+    .o_kanban_group:not(.o_column_folded) {
+        width: 460px;
+    }
+    .kanban_note{
+        width: 430px!important;
+        margin-bottom: 10px !important;
+    }
+    .kanban_note_img img{
+        top: 30px;
+    }
+    .o_kanban_header_title span{
+        font-weight: 600!important;
+        text-transform: uppercase!important;
+    }
+}

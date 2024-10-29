@@ -1,0 +1,54 @@
+.o_background_transit_footer, .o_background_transit_header, .o_report_layout_transit_background {
+    font-family: 'Lato', 'Noto';
+    color: #000;
+}
+.o_background_transit_header {
+    border-bottom: 3px solid $o-brand-odoo;
+
+
+    // border-bottom: 1px solid $o-brand-primary;
+
+}
+.o_background_transit_footer {
+    margin: 0 3px;
+    margin-top: 200px;
+    border-top: 3px solid $o-brand-odoo;
+    .list-inline-item {
+        white-space: nowrap;
+    }
+    ul {
+        border-top: 1px solid $o-brand-odoo;
+        border-bottom: 1px solid $o-brand-odoo;
+        padding: 4px 0;
+        margin: 0 0 4px 0;
+        li {
+            color: $o-brand-odoo;
+        }
+    }
+}
+// .page{
+// 	background: url(/transit_invoice/static/img/lmc_background_1.png);
+// 	background-position: center;
+// 	background-repeat: repeat-y;
+// 	background-size: 1000px auto;
+// }
+
+
+
+.o_report_layout_transit_background {
+    background: url(/transit_invoice/static/img/lmc_background_1.png);
+    background-position: center;
+	background-repeat: repeat-y;
+	background-size: 1000px auto;
+    hr{
+        border-bottom: 3px solid $o-brand-odoo;
+    }
+
+}
+
+/* special case for displaying report in iframe */
+.o_in_iframe {
+    .o_background_transit_header {
+        min-width: 0;
+    }
+}

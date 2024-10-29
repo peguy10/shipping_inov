@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+      <menuitem name="Shipping" id="menu_shipping_root_id" web_icon="inov_shipping,static/description/icon.png"
+            sequence="60"/>
+    <menuitem name="Tableau de bord" id="menu_dashboard_shipping_id" parent="menu_shipping_root_id" sequence="1" />
+     <menuitem name="Dossiers" id="menu_folder_shipping_id" parent="menu_shipping_root_id" sequence="2" />
+     <menuitem name="Donnee de Base" id="menu_folder_base_id" parent="menu_shipping_root_id" sequence="3" />
+     <menuitem name="Facturation et Reglement" id="menu_folder_accounting_id" parent="menu_shipping_root_id" sequence="4"/>
+      <menuitem name="Article" id="menu_folder_product_id" parent="menu_folder_base_id" sequence="1" action="stock.product_template_action_product"/>
+     <menuitem name="Rapports" id="menu_report_id" parent="menu_shipping_root_id" sequence="5" groups="transit_invoice.group_shipping_manager"/>
+    <menuitem name="Configuration" id="menu_shipping_configuration_id" parent="menu_shipping_root_id" sequence="6" />
+
+    </data>
+</odoo>

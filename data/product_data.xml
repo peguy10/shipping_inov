@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+          <record id="product_product_pilotage" model="product.product">
+            <field name="name">Pilotage in + out</field>
+            <field name="list_price">0.06</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">PILOTAGES</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+        <record id="product_product_quay" model="product.product">
+            <field name="name">Quay dues</field>
+            <field name="list_price">0.032</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">QDUES</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+        <record id="product_product_ops" model="product.product">
+            <field name="name">Wharfage ops</field>
+            <field name="list_price">0.182</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">WHARFAGE</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+        <record id="product_product_bonus" model="product.product">
+            <field name="name">Pilot bonus</field>
+            <field name="list_price">0.006098</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">PILBONUS</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+        <record id="product_product_pilotage_bonus" model="product.product">
+            <field name="name">Pilotage bonus</field>
+            <field name="list_price">42</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">PILOTAGEBONUS</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_chanel" model="product.product">
+            <field name="name">Chanel Dues</field>
+            <field name="list_price">7145</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">CHDUES</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_tug" model="product.product">
+            <field name="name">Tug fees (2 + 2) VSL > 150m</field>
+            <field name="list_price">5033</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">TUGFEES</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_line" model="product.product">
+            <field name="name">Line handling</field>
+            <field name="list_price">472</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">LINEHANDLING</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_overt" model="product.product">
+            <field name="name">Overtime</field>
+            <field name="list_price">1.0</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">OVERT</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_royal" model="product.product">
+            <field name="name"> handling royalties</field>
+            <field name="list_price">0.031</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">HDLRY</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_vessel" model="product.product">
+            <field name="name">Vessel security</field>
+            <field name="list_price">64.25</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">SECUVESSEL</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_tax" model="product.product">
+            <field name="name">Environnemental  tax</field>
+            <field name="list_price">1.0</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">ENVTAX</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_code" model="product.product">
+            <field name="name">ISPS Security code</field>
+            <field name="list_price">1.0</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">ISPSCODE</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_customs" model="product.product">
+            <field name="name">Customs registration</field>
+            <field name="list_price">228</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">CUSREGIST</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+        <record id="product_product_customs_watch" model="product.product">
+            <field name="name">Customs Watch</field>
+            <field name="list_price">160</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">CUSTOMW</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_navy" model="product.product">
+            <field name="name">Navy merchant fees</field>
+            <field name="list_price">240</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">NAVYFEES</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_health" model="product.product">
+            <field name="name">Health / Immigration / Police</field>
+            <field name="list_price">150</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">HEA/IMM/POL</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_carservices" model="product.product">
+            <field name="name">Car service/Petties</field>
+            <field name="list_price">35.333</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">CARSERVICES</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_vhf" model="product.product">
+            <field name="name">Communication / VHF</field>
+            <field name="list_price">50.42</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">VHF</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_sanitary" model="product.product">
+            <field name="name">Sanitary  Inspection of vessel</field>
+            <field name="list_price">305</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">SANITARY/VESSEL</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_in/out" model="product.product">
+            <field name="name">Clearance in/out</field>
+            <field name="list_price">432</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">CLEARANCE/INOUT</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_ucam" model="product.product">
+            <field name="name">GUCE / UCAM</field>
+            <field name="list_price">99.0</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">GUCE</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_pilotage_royaltie" model="product.product">
+            <field name="name">Port Royalties</field>
+            <field name="list_price">0.076</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">PILOTAGES</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_miscellaneous" model="product.product">
+            <field name="name">Miscellaneous</field>
+            <field name="list_price">100</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">MISCS</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+         <record id="product_product_cholera" model="product.product">
+            <field name="name">Cholera sanitary measure</field>
+            <field name="list_price">1.0</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">CHL/SANIT</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+        <record id="product_product_lumpsun" model="product.product">
+            <field name="name">Lumpsun ()</field>
+            <field name="list_price">0.673</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">LUMPSUN</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+        <record id="product_product_vat" model="product.product">
+            <field name="name">VAT</field>
+            <field name="list_price">0.1925</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">VT</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+        </record>
+
+    </data>
+</odoo>

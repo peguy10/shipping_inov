@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="vessel_transit_kanban_inherit" model="ir.ui.view">
+            <field name="name">vessel.transit.kanban.inherit</field>
+            <field name="model">vessel.transit</field>
+            <field name="inherit_id" ref="transit_invoice.vessel_kanban_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="flag_id"/>
+                    <field name="weight_grt"/>
+                    <field name="vessel_loa"/>
+                     <field name="vessel_beam"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_details']" position="inside">
+                        <ul>
+                            <li><strong>Pays d'origine: <field name="flag_id"></field></strong></li>
+                            <li><strong>GRT(MT): <field name="weight_grt"></field></strong></li>
+                            <li><strong>LOA(M): <field name="vessel_loa"></field></strong></li>
+                            <li><strong>BEAM(M): <field name="vessel_beam"></field></strong></li>
+                        </ul>
+                </xpath>
+            </field>
+        </record>
+       <record id="vessel_inherit_form" model="ir.ui.view">
+           <field name="name">vessel.transit.inherit.form</field>
+           <field name="model">vessel.transit</field>
+           <field name="inherit_id" ref="transit_invoice.vessel_transit_form" />
+           <field name="arch" type="xml">
+            <xpath expr="//button[@name='toggle_active']" position="before">
+                <button name="update_vessels"
+                type="object"
+                string="Creer Zone Stockage"
+                icon="fa-ship" invisible ="[('bol_hold', '=', True)]"/>
+            </xpath>
+            <xpath expr="//h1" position="after">
+                <group>
+                    <group >
+                        <field name="number_of_hold"/>
+                        <field name="type_carry"/>
+                        <field name="flag_id"/>
+                        <field name="bol_hold"/>
+                    </group>
+                    <group string="Measurement">
+                        <field name="weight_grt"/>
+                        <field name="weight_drt"/>
+                        <field name="vessel_loa"/>
+                        <field name="vessel_beam"/>
+                        <field name="vessel_draft"/>
+                     </group>
+                </group>
+             </xpath>
+             <xpath expr="//notebook" position="inside">
+                <page string="Holds">
+                    <field name="hold_ids"  readonly="1"/>
+                </page>
+             </xpath>
+           </field>
+       </record>
+
+        <record id="mail_activity_shipping_action" model="ir.actions.act_window">
+            <field name="name">Mes Taches</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mail.activity</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="mail.mail_activity_view_search"/>
+            <field name="context">{
+                'search_default_activities_my':1,
+                'default_stages':'ship'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Suivi des Taches de Dossier Shipping
+                </p><p>
+                </p>
+            </field>
+      </record>
+    <menuitem
+            name="Taches"
+            action="mail_activity_shipping_action"
+            id="menu_activity_task_id" parent="inov_shipping.menu_folder_shipping_id" groups="transit_invoice.group_shipping_user"
+            sequence="7" />
+
+
+
+
+    <record id="action_shipping_invoice_tree" model="ir.actions.act_window">
+            <field name="name">Factures</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,kanban,form,activity</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type_name','=','out_invoice')]</field>
+            <field name="context">{'type_name':'out_invoice', 'journal_type': 'sale' ,'search_default_transit_ship':1}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a customer invoice
+              </p><p>
+                Create invoices, register payments and keep track of the discussions with your customers.
+              </p>
+            </field>
+        </record>
+     <menuitem name="Facturation" id="menu_invoice_transit_root_id" parent="menu_folder_accounting_id" sequence="41" action="action_shipping_invoice_tree" />
+
+    <record id="action_account_payments_shipping" model="ir.actions.act_window">
+        <field name="name">Paiements</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,kanban,form,graph</field>
+        <field name="context">{'default_payment_type': 'inbound', 'default_partner_type': 'customer', 'search_default_inbound_filter': 1}</field>
+        <field name="domain">[('folder_type','=','ship')]</field>
+        <field name="view_id" ref="account.view_account_payment_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a payment
+            </p><p>
+                Payments are used to register liquidity movements. You can process those payments by your own means or by using installed facilities.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Paiement" id="menu_shipping_payment_id" parent="menu_folder_accounting_id" sequence="42"  action="action_account_payments_shipping"/>
+
+
+    </data>
+</odoo>

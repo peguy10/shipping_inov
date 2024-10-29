@@ -1,0 +1,226 @@
+<odoo>
+  <data>
+     <record id="folder_transit_shipping_inherit_search" model="ir.ui.view">
+    <field name="name">folder.shipping.inherit.search</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <field name="folder_id"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="act_folder_transit_2_sale_order" model="ir.actions.act_window">
+        <field name="name">Proformas</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="context"></field>
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new quotation, the first step of a new sale!
+          </p><p>
+            Once the quotation is confirmed by the customer, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+          </p>
+        </field>
+    </record>
+
+
+
+
+      <record id="folder_inherit_form" model="ir.ui.view">
+        <field name="name">folder.transit.inherit.form</field>
+        <field name="model">folder.transit</field>
+        <field name="inherit_id" ref="transit_invoice.transit_folder_form_form" />
+        <field name="arch" type="xml">
+          <xpath expr="//button[@name='toggle_active']" position="before">
+              <field name="sale_ids" invisible="1"/>
+              <button type="object"
+                name="act_folder_transit_2_sale_order"
+                icon="fa-dollar"
+                invisible="stages != 'ship'">
+                <field name="sales_count" widget="statinfo" string="Etablir une Proforma" />
+
+              </button>
+          </xpath>
+          <xpath expr="//group[@name='folder_transit']" position="after">
+              <group name="folder_ship" invisible="stages != 'ship'">
+              <group string="Type de Dossier">
+                <field name="type_op" widget="radio"/>
+              </group>
+              <group>
+                <field name="transpo_type" widget="radio"/>
+              </group>
+
+              <group string="Navire" invisible="stages != 'ship'">
+                  <field string="Navire" name="vessel" required= "stages=='ship'" />
+                  <field name="user_id" groups="base.group_user"/>
+                  <field  name="number_of_hold"/>
+                  <field  name="type_carry"/>
+                  <field  name="flag_id"/>
+                  <field  name="weight_grt"/>
+                  <field  name="weight_drt"/>
+                  <field  name="vessel_loa"/>
+                  <field  name="vessel_beam"/>
+                  <field name="total_weighty" required= "stages=='ship'"/>
+              </group>
+             <group invisible="stages != 'ship'">
+                <field name="total_crew"/>
+                <field name="captain_name"/>
+                <field name="customer_id" string="Affreteur"/>
+                <field name="consigne_id" string="Armateur"/>
+                <field name="num_voy"/>
+            </group>
+            <group string="Dates" invisible="stages != 'ship'">
+                <field name="date_arrival"  required= "stages=='ship'"/>
+            </group>
+
+
+            </group>
+          </xpath>
+          <xpath expr="//page[@name='packages']" position="after">
+
+
+            <page string="BL">
+              <field name="bl_many_ids">
+                <tree string="BLs" editable="bottom">
+                  <field name="name"/>
+                  <field name="customer_id"/>
+                  <field name="product_id"/>
+                  <field name="package"/>
+                  <field name="qty"/>
+                  <field name="package_uom_id"/>
+                </tree>
+              </field>
+            </page>
+
+            <page string="1/ Outlays /PORT CHARGES">
+                <group string="1/ Outlays /PORT CHARGES">
+                     <field name="pilotage_entry"/>
+                     <field name="pilot_bonus"/>
+                     <field name="pilot_night"/>
+                     <field name="pilot_bonus_night"/>
+                     <field name="pilot_immo_in_night"/>
+                     <field name="bonus_pilot_immo_in_night"/>
+                     <field name="pilot_immo_night_week"/>
+                     <field name="bonus_pilot_immo_night_week"/>
+                     <field name="security_watch"/>
+                     <field name="ship_stay"/>
+                     <field name="royalty_stay"/>
+                     <field name="port_royalty"/>
+                     <field name="environmental_royalty"/>
+                </group>
+            </page>
+
+            <page string="2/ Outlays / Terminal costs / MOORING">
+                <group string="Outlays / Terminal costs / MOORING">
+                     <field name="mooring"/>
+                     <field name="per_each"/>
+                     <field name="traffic_due"/>
+                </group>
+            </page>
+
+            <page string="3/ Outlays / OTHER PORT EXPENSE">
+                <group string="3/ Outlays / OTHER PORT EXPENSE">
+                     <field name="customs_boarding"/>
+                     <field name="piloting_thro_trip"/>
+                     <field name="trans_ship_sanitation"/>
+                     <field name="piloting_thro_night"/>
+                     <field name="trans_piloting_thro_trip"/>
+                     <field name="trans_immi_thro_trip"/>
+                     <field name="customs_supervision"/>
+                     <field name="accomodation_trans_pilot"/>
+                     <field name="port_health"/>
+                     <field name="accomodation_trans_port_health"/>
+                     <field name="immi_formality"/>
+                </group>
+            </page>
+
+
+            <page string="Services">
+                <group string="Services">
+                     <field name="agency_fees"/>
+                </group>
+            </page>
+
+
+          </xpath>
+        </field>
+      </record>
+
+     <record id="action_shipping_folder" model="ir.actions.act_window">
+        <field name="name">Ouverture du Dossier Shipping</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">folder.transit</field>
+        <field name="view_mode">tree,kanban,calendar,form</field>
+        <field name="domain">[('stages','=','ship')]</field>
+        <field name="search_view_id" ref="transit_invoice.view_transit_folder_filter"/>
+        <field name="context">{
+          'search_default_my_transit_folders_shipping':1,
+          'default_stages':'ship'
+
+        }</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+              Demarrer la creation de Votre Dossier a partir de cette Interface.
+            </p><p>
+                Apres cloture de Dossier Notre application generera une Facture qui sera enregistre en comptabilite
+                Pour votre suivi
+            </p>
+        </field>
+      </record>
+      <menuitem
+            name="Dossier Shipping"
+            action="action_shipping_folder"
+            id="menu_shipping_folder" parent="menu_folder_shipping_id" groups="transit_invoice.group_shipping_manager,transit_invoice.group_shipping_user"
+            sequence="20" />
+
+       <record id="action_activity_shipping_view" model="ir.actions.act_window">
+          <field name="name">Activite Shipping</field>
+          <field name="res_model">folder.transit</field>
+          <field name="view_mode">activity</field>
+          <field name="view_id" ref="transit_invoice.view_transit_folder_filter"/>
+          <field name="context">{
+                'search_default_my_transit_folders_shipping':1
+              }</field>
+        </record>
+
+    <menuitem
+            name="Suivi Dossier Shipping"
+            action="action_activity_shipping_view"
+            id="menu_shipping_id" parent="inov_shipping.menu_dashboard_shipping_id" groups="transit_invoice.group_shipping_manager"
+            sequence="30" />
+
+    <record id="mail_activity_type_shipping_action" model="ir.actions.act_window">
+            <field name="name">Etapes de traitement Dossier Shipping</field>
+            <field name="res_model">mail.activity.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('res_model','=','folder.transit'),('stages','=','ship')]</field>
+    </record>
+
+  <menuitem
+            name="Etapes Shipping"
+            action="mail_activity_type_shipping_action"
+            id="menu_activity_type_shipping_id" parent="menu_shipping_configuration_id" groups="transit_invoice.group_shipping_manager"
+            sequence="106" />
+
+   <menuitem
+            name="Navire"
+            action="transit_invoice.vessel_transit_action"
+            id="menu_vessel_id" parent="inov_shipping.menu_folder_shipping_id" groups="transit_invoice.group_shipping_manager"
+            sequence="10" />
+
+  <menuitem
+            name="Services"
+            action="transit_invoice.service_expense_product"
+            id="menu_transit_service_expense_id" parent="inov_shipping.menu_folder_base_id" groups="transit_invoice.group_shipping_manager"
+            sequence="2" />
+
+    <menuitem
+            name="Modele de Devis"
+            action="sale_management.sale_order_template_action"
+            id="menu_shipping_service_sale_id" parent="menu_shipping_configuration_id" groups="transit_invoice.group_shipping_manager"
+            sequence="2" />
+  </data>
+</odoo>
