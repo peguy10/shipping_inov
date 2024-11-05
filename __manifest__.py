@@ -32,6 +32,8 @@
         'views/navire_views.xml',
         'views/bl_order_views.xml',
         'views/templates.xml',
+        'report/ir_report_account_invoice.xml',
+        'report/ir_report_account_invoice_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
