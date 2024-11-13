@@ -27,11 +27,14 @@
         'data/shipping_activity_type_view.xml',
         'data/stage_data.xml',
         'data/product_data.xml',
+        'data/devis_template.xml',
         'views/shipping_menu_views.xml',
         'views/views.xml',
         'views/navire_views.xml',
         'views/bl_order_views.xml',
         'views/templates.xml',
+        'report/ir_report_account_invoice.xml',
+        'report/ir_report_account_invoice_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -8,7 +8,9 @@ class FretTransit(models.Model):
 
     name = fields.Char("Name")
 
-
+class SaleOrderTemplate(models.Model):
+    _inherit = 'sale.order.template'
+    transit_id = fields.Many2one('folder.transit', string='Dossier')
 class FolderTransit(models.Model):
     _inherit = 'folder.transit'
 
