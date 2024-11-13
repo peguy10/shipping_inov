@@ -35,6 +35,12 @@ class FolderTransit(models.Model):
     )
     volum_vessel = fields.Float("Volume:cbm", compute='_get_data_vessel', store=True)
 
+    # Ajout du champ Many2One pour le modèle de devis
+    order_template_id = fields.Many2one(
+        comodel_name='sale.order.template',
+        string='Modèle de Devis'
+    )
+
     # fret_id = fields.Many2one(string='Affreteur', comodel_name='res.partner', ondelete='restrict')
     bl_many_ids = fields.Many2many('folder.transit.bl', 'rel_transit_bl_order', string="BLs")
     sale_ids = fields.One2many(string='Proformas', comodel_name='sale.order', inverse_name='folder_id')
