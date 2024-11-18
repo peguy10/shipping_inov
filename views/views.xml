@@ -71,6 +71,7 @@
                 <field name="customer_id" string="Affreteur"/>
                 <field name="consigne_id" string="Armateur"/>
                 <field name="num_voy"/>
+                <field name="order_template_id"/>
             </group>
             <group string="Dates" invisible="stages != 'ship'">
                 <field name="date_arrival"  required= "stages=='ship'"/>

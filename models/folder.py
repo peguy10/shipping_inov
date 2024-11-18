@@ -8,7 +8,9 @@ class FretTransit(models.Model):
 
     name = fields.Char("Name")
 
-
+class SaleOrderTemplate(models.Model):
+    _inherit = 'sale.order.template'
+    transit_id = fields.Many2one('folder.transit', string='Dossier')
 class FolderTransit(models.Model):
     _inherit = 'folder.transit'
 
@@ -32,6 +34,12 @@ class FolderTransit(models.Model):
         string="Nombre de Jour d'escale",
     )
     volum_vessel = fields.Float("Volume:cbm", compute='_get_data_vessel', store=True)
+
+    # Ajout du champ Many2One pour le modèle de devis
+    order_template_id = fields.Many2one(
+        comodel_name='sale.order.template',
+        string='Modèle de Devis'
+    )
 
     # fret_id = fields.Many2one(string='Affreteur', comodel_name='res.partner', ondelete='restrict')
     bl_many_ids = fields.Many2many('folder.transit.bl', 'rel_transit_bl_order', string="BLs")

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--<odoo>-->
+<!-- <record id="action_report_invoice" model="ir.actions.report">-->
+<!--        <field name="name">Facture FSMS PDF</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">inov_shipping.report_invoice_template</field>-->
+<!--        <field name="report_file">inov_shipping.report_invoice_template</field>-->
+<!--        <field name="binding_model_id" ref="model_fret_transit"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!-- </record>-->
+<!--</odoo>-->
+
+<odoo>
+    <data>
+        <!-- Définition du rapport -->
+
+
+<!--        <record id="report_invoice_fsms" model="ir.actions.report">-->
+<!--            <field name="name">Facture FSMS PDF</field>-->
+<!--            <field name="model">account.move</field>-->
+<!--            <field name="report_type">qweb-pdf</field>-->
+<!--            <field name="report_name">inov_shipping.report_invoice_fsms</field>-->
+<!--            <field name="report_file">inov_shipping.report_invoice_fsms</field>-->
+<!--            <field name="binding_model_id" ref="model_fret_transit"/>-->
+<!--            <field name="binding_type">report</field>-->
+<!--        </record>-->
+        <record id="account_report_invoice" model="ir.actions.report">
+      <field name="name">Proforma PDF</field>
+       <field name="model">sale.order</field>
+         <field name="report_type">qweb-pdf</field>
+        <field name="report_name">inov_shipping.report_folder_transit</field>
+        <field name="report_file">inov_shipping.report_folder_transit</field>
+       <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="binding_type">report</field>
+ </record>-->
+
+    </data>
+</odoo>
