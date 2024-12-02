@@ -32,7 +32,7 @@
       <record id="folder_inherit_form" model="ir.ui.view">
         <field name="name">folder.transit.inherit.form</field>
         <field name="model">folder.transit</field>
-        <field name="inherit_id" ref="transit_invoice.transit_folder_form_form" />
+        <field name="inherit_id" ref="inov_transit.transit_folder_form_form" />
         <field name="arch" type="xml">
           <xpath expr="//button[@name='toggle_active']" position="before">
               <field name="sale_ids" invisible="1"/>
@@ -156,7 +156,7 @@
         <field name="res_model">folder.transit</field>
         <field name="view_mode">tree,kanban,calendar,form</field>
         <field name="domain">[('stages','=','ship')]</field>
-        <field name="search_view_id" ref="transit_invoice.view_transit_folder_filter"/>
+        <field name="search_view_id" ref="inov_transit.view_transit_folder_filter"/>
         <field name="context">{
           'search_default_my_transit_folders_shipping':1,
           'default_stages':'ship'
@@ -174,14 +174,14 @@
       <menuitem
             name="Dossier Shipping"
             action="action_shipping_folder"
-            id="menu_shipping_folder" parent="menu_folder_shipping_id" groups="transit_invoice.group_shipping_manager,transit_invoice.group_shipping_user"
+            id="menu_shipping_folder" parent="menu_folder_shipping_id" groups="inov_transit.group_shipping_manager,inov_transit.group_shipping_user"
             sequence="20" />
 
        <record id="action_activity_shipping_view" model="ir.actions.act_window">
           <field name="name">Activite Shipping</field>
           <field name="res_model">folder.transit</field>
           <field name="view_mode">activity</field>
-          <field name="view_id" ref="transit_invoice.view_transit_folder_filter"/>
+          <field name="view_id" ref="inov_transit.view_transit_folder_filter"/>
           <field name="context">{
                 'search_default_my_transit_folders_shipping':1
               }</field>
@@ -190,7 +190,7 @@
     <menuitem
             name="Suivi Dossier Shipping"
             action="action_activity_shipping_view"
-            id="menu_shipping_id" parent="inov_shipping.menu_dashboard_shipping_id" groups="transit_invoice.group_shipping_manager"
+            id="menu_shipping_id" parent="inov_shipping.menu_dashboard_shipping_id" groups="inov_transit.group_shipping_manager"
             sequence="30" />
 
     <record id="mail_activity_type_shipping_action" model="ir.actions.act_window">
@@ -203,25 +203,25 @@
   <menuitem
             name="Etapes Shipping"
             action="mail_activity_type_shipping_action"
-            id="menu_activity_type_shipping_id" parent="menu_shipping_configuration_id" groups="transit_invoice.group_shipping_manager"
+            id="menu_activity_type_shipping_id" parent="menu_shipping_configuration_id" groups="inov_transit.group_shipping_manager"
             sequence="106" />
 
    <menuitem
             name="Navire"
-            action="transit_invoice.vessel_transit_action"
-            id="menu_vessel_id" parent="inov_shipping.menu_folder_shipping_id" groups="transit_invoice.group_shipping_manager"
+            action="inov_transit.vessel_transit_action"
+            id="menu_vessel_id" parent="inov_shipping.menu_folder_shipping_id" groups="inov_transit.group_shipping_manager"
             sequence="10" />
 
   <menuitem
             name="Services"
-            action="transit_invoice.service_expense_product"
-            id="menu_transit_service_expense_id" parent="inov_shipping.menu_folder_base_id" groups="transit_invoice.group_shipping_manager"
+            action="inov_transit.service_expense_product"
+            id="menu_transit_service_expense_id" parent="inov_shipping.menu_folder_base_id" groups="inov_transit.group_shipping_manager"
             sequence="2" />
 
     <menuitem
             name="Modele de Devis"
             action="sale_management.sale_order_template_action"
-            id="menu_shipping_service_sale_id" parent="menu_shipping_configuration_id" groups="transit_invoice.group_shipping_manager"
+            id="menu_shipping_service_sale_id" parent="menu_shipping_configuration_id" groups="inov_transit.group_shipping_manager"
             sequence="2" />
   </data>
 </odoo>

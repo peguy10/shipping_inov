@@ -72,7 +72,7 @@
             </field>
         </record>
 
-        <menuitem name="BLs" sequence="18" id="menu_bl_id" parent="transit_invoice.menu_folder_id" action="inov_shipping.folder_transit_bl_action" groups="transit_invoice.group_transit_manager"/>
-        <menuitem name="BLs" sequence="18" id="menu_bl_transit_id" parent="menu_folder_shipping_id" action="inov_shipping.folder_transit_bl_action" groups="transit_invoice.group_shipping_manager"/>
+        <menuitem name="BLs" sequence="18" id="menu_bl_id" parent="inov_transit.menu_folder_id" action="inov_shipping.folder_transit_bl_action" groups="inov_transit.group_transit_manager"/>
+        <menuitem name="BLs" sequence="18" id="menu_bl_transit_id" parent="menu_folder_shipping_id" action="inov_shipping.folder_transit_bl_action" groups="inov_transit.group_shipping_manager"/>
     </data>
 </odoo>

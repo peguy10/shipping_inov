@@ -9,7 +9,7 @@
      <menuitem name="Donnee de Base" id="menu_folder_base_id" parent="menu_shipping_root_id" sequence="3" />
      <menuitem name="Facturation et Reglement" id="menu_folder_accounting_id" parent="menu_shipping_root_id" sequence="4"/>
       <menuitem name="Article" id="menu_folder_product_id" parent="menu_folder_base_id" sequence="1" action="stock.product_template_action_product"/>
-     <menuitem name="Rapports" id="menu_report_id" parent="menu_shipping_root_id" sequence="5" groups="transit_invoice.group_shipping_manager"/>
+     <menuitem name="Rapports" id="menu_report_id" parent="menu_shipping_root_id" sequence="5" groups="inov_transit.group_shipping_manager"/>
     <menuitem name="Configuration" id="menu_shipping_configuration_id" parent="menu_shipping_root_id" sequence="6" />
 
     </data>

@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['transit_invoice','sale_stock','sale_management'],
+    'depends': ['inov_transit','sale_stock','sale_management'],
 
     # always loaded
     'data': [
