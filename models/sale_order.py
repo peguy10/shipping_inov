@@ -3,7 +3,10 @@ from odoo import models, fields, api
 from datetime import datetime, timedelta, date
 from ast import literal_eval
 
+import logging
 
+# Créez un logger
+_logger = logging.getLogger(__name__)
 class SaleShipTemplate(models.Model):
     _inherit='sale.order.template'
 
@@ -25,6 +28,12 @@ class SaleTransit(models.Model):
     days = fields.Float("Nombre de Jours",)
     vessel_qty= fields.Float(related="folder_id.total_weighty", strong="Quantity", store=True)
     shipping_use = fields.Boolean(default=False)
+
+    def _get_default_require_signature(self):
+        return False  # Remplacez par la logique appropriée
+
+    def _get_default_require_payment(self):
+        return False  # Remplacez par la logique appropriée
 
 
     def _compute_line_data_for_vessel_change(self,line):
@@ -55,30 +64,36 @@ class SaleTransit(models.Model):
 
     @api.onchange('sale_order_template_id')
     def onchange_sale_order_template_id(self):
+        # Vérifier si le modèle de commande est sélectionné
         if not self.sale_order_template_id:
             self.require_signature = self._get_default_require_signature()
             self.require_payment = self._get_default_require_payment()
             return
+
+        # Récupérer le modèle de commande avec le contexte de la langue du partenaire
         template = self.sale_order_template_id.with_context(lang=self.partner_id.lang)
 
+        # Initialiser les lignes de commande
         order_lines = [(5, 0, 0)]
         for line in template.sale_order_template_line_ids:
+            # Calcul des données pour la ligne en fonction du changement de vaisseau
             data = self._compute_line_data_for_vessel_change(line)
-            if line.product_id and not template.is_proforma:
+
+            # Vérification que `data` est un dictionnaire avant de faire `.update()`
+            if isinstance(data, dict):
                 discount = 0
                 if self.pricelist_id:
                     price = self.pricelist_id.with_context(uom=line.product_uom_id.id).get_product_price(line.product_id, 1, False)
-                    if self.pricelist_id.discount_policy == 'without_discount' and line.price_unit:
-                        discount = (line.price_unit - price) / line.price_unit * 100
-                        # negative discounts (= surcharge) are included in the display price
+                    if self.pricelist_id.discount_policy == 'without_discount' and line.product_id.lst_price:
+                        discount = (line.product_id.lst_price - price) / line.product_id.lst_price * 100
                         if discount < 0:
                             discount = 0
                         else:
-                            price = line.price_unit
-
+                            price = line.product_id.lst_price
                 else:
-                    price = line.price_unit
+                    price = line.product_id.lst_price
 
+                # Mise à jour des données de la ligne de commande
                 data.update({
                     'price_unit': price,
                     'discount': 100 - ((100 - discount) * (100 - line.discount) / 100),
@@ -87,53 +102,41 @@ class SaleTransit(models.Model):
                     'product_uom': line.product_uom_id.id,
                     'customer_lead': self._get_customer_lead(line.product_id.product_tmpl_id),
                 })
-                if self.pricelist_id:
-                    data.update(self.env['sale.order.line']._get_purchase_price(self.pricelist_id, line.product_id, line.product_uom_id, fields.Date.context_today(self)))
-            elif line.product_id and template.is_proforma:
-                discount = 0
-                if self.pricelist_id:
-                    price = self.pricelist_id.with_context(uom=line.product_uom_id.id).get_product_price(line.product_id, 1, False)
-                    if self.pricelist_id.discount_policy == 'without_discount' and line.price_unit:
-                        discount = (line.price_unit - price) / line.price_unit * 100
-                        # negative discounts (= surcharge) are included in the display price
-                        if discount < 0:
-                            discount = 0
-                        else:
-                            price = line.price_unit
 
-                else:
-                    price = line.price_unit
-
-                data.update({
-                    'price_unit': line.product_id.list_price,
-                    'discount': 100 - ((100 - discount) * (100 - line.discount) / 100),
-                    'product_uom_qty': self._compute_line_data_for_vessel_change(line),
-                    'product_id': line.product_id.id,
-                    'product_uom': line.product_uom_id.id,
-                    'customer_lead': self._get_customer_lead(line.product_id.product_tmpl_id),
-                })
+                # Si une liste de prix est définie, ajouter les prix d'achat
                 if self.pricelist_id:
-                    data.update(self.env['sale.order.line']._get_purchase_price(self.pricelist_id, line.product_id, line.product_uom_id, fields.Date.context_today(self)))
-            order_lines.append((0, 0, data))
+                    data.update(self.env['sale.order.line']._get_purchase_price(
+                        self.pricelist_id, line.product_id, line.product_uom_id, fields.Date.context_today(self)))
 
+                # Ajouter la ligne de commande
+                order_lines.append((0, 0, data))
+            else:
+                # Gérer le cas où `data` n'est pas un dictionnaire
+                _logger.error("Expected 'data' to be a dictionary but got %s", type(data))
+                raise ValueError(f"Expected 'data' to be a dictionary, but got {type(data)}")
+
+        # Affectation des lignes de commande et des taxes
         self.order_line = order_lines
         self.order_line._compute_tax_id()
 
+        # Traitement des options du modèle de commande
         option_lines = []
         for option in template.sale_order_template_option_ids:
-            data = self._compute_option_data_for_template_change(option)
-            option_lines.append((0, 0, data))
+            option_data = self._compute_option_data_for_template_change(option)
+            option_lines.append((0, 0, option_data))
         self.sale_order_option_ids = option_lines
 
+        # Mise à jour de la date de validité
         if template.number_of_days > 0:
-            self.validity_date = fields.Date.to_string(datetime.now() + timedelta(template.number_of_days))
+            self.validity_date = fields.Date.to_string(fields.Date.context_today(self) + timedelta(template.number_of_days))
 
+        # Mise à jour des champs signature et paiement
         self.require_signature = template.require_signature
         self.require_payment = template.require_payment
 
+        # Si le modèle a une note, l'affecter
         if template.note:
             self.note = template.note
-
     def get_shipping_price(self):
         prod1=self.env.ref("inov_shipping.product_product_pilotage")
         prod2=self.env.ref("inov_shipping.product_product_tug")

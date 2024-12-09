@@ -243,6 +243,7 @@
             <field name="type">service</field>
             <field name="default_code">VT</field>
             <field name="categ_id" ref="product.product_category_all"/>
+
         </record>
 
          <record id="product_product_vat" model="product.product">
@@ -254,6 +255,7 @@
             <field name="type">service</field>
             <field name="default_code">VT</field>
             <field name="categ_id" ref="product.product_category_all"/>
+
         </record>
 
     </data>
