@@ -16,10 +16,11 @@
                 <field name="shipping_use" column_invisible="1"/>
 
               </xpath>
-              <xpath expr="//field[@name='payment_term_id']" position="after">
-                    <button name="get_shipping_price" type="object" class="oe_inline oe_link" modifiers="{'invisible':[('shipping_use','=',True)]}">
-                        <i class="fa fa-arrow-right"/>
-                        CALCUL DU PRIX
+              <xpath expr="//group[@name='note_group']" position="before">
+                    <button name="get_shipping_price" type="object"  class="btn-primary" modifiers="{'invisible':[('shipping_use','=',True)]}">
+
+                        Mise à jour des prix
+                        <i class="fa fa-refresh fa-spin"/>
                     </button>
                 </xpath>
           </field>

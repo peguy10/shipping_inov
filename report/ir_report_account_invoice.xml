@@ -33,7 +33,7 @@
         <field name="report_file">inov_shipping.report_folder_transit</field>
        <field name="binding_model_id" ref="model_sale_order"/>
         <field name="binding_type">report</field>
- </record>-->
+ </record>
 
     </data>
 </odoo>

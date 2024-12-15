@@ -71,18 +71,26 @@
                 <field name="customer_id" string="Affreteur"/>
                 <field name="consigne_id" string="Armateur"/>
                 <field name="num_voy"/>
-                <field name="order_template_id"/>
+                <field name="order_template_id" options="{'no_create': True}"/>
             </group>
             <group string="Dates" invisible="stages != 'ship'">
                 <field name="date_arrival"  required= "stages=='ship'"/>
             </group>
 
-
             </group>
           </xpath>
-          <xpath expr="//page[@name='packages']" position="after">
+          <xpath expr="//page[@name='packages']" position="before">
 
-
+<!-- 
+                <page string="Ligne de commande">
+                  <field name="order_line_ids">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="product_uom_qty"/>
+                            <field name="price_unit"/>
+                        </tree>
+                  </field>
+                </page> -->
             <page string="BL">
               <field name="bl_many_ids">
                 <tree string="BLs" editable="bottom">
@@ -96,54 +104,54 @@
               </field>
             </page>
 
-            <page string="1/ Outlays /PORT CHARGES">
-                <group string="1/ Outlays /PORT CHARGES">
-                     <field name="pilotage_entry"/>
-                     <field name="pilot_bonus"/>
-                     <field name="pilot_night"/>
-                     <field name="pilot_bonus_night"/>
-                     <field name="pilot_immo_in_night"/>
-                     <field name="bonus_pilot_immo_in_night"/>
-                     <field name="pilot_immo_night_week"/>
-                     <field name="bonus_pilot_immo_night_week"/>
-                     <field name="security_watch"/>
-                     <field name="ship_stay"/>
-                     <field name="royalty_stay"/>
-                     <field name="port_royalty"/>
-                     <field name="environmental_royalty"/>
-                </group>
-            </page>
+<!--            <page string="1/ Outlays /PORT CHARGES">-->
+<!--                <group string="1/ Outlays /PORT CHARGES">-->
+<!--                     <field name="pilotage_entry"/>-->
+<!--                     <field name="pilot_bonus"/>-->
+<!--                     <field name="pilot_night"/>-->
+<!--                     <field name="pilot_bonus_night"/>-->
+<!--                     <field name="pilot_immo_in_night"/>-->
+<!--                     <field name="bonus_pilot_immo_in_night"/>-->
+<!--                     <field name="pilot_immo_night_week"/>-->
+<!--                     <field name="bonus_pilot_immo_night_week"/>-->
+<!--                     <field name="security_watch"/>-->
+<!--                     <field name="ship_stay"/>-->
+<!--                     <field name="royalty_stay"/>-->
+<!--                     <field name="port_royalty"/>-->
+<!--                     <field name="environmental_royalty"/>-->
+<!--                </group>-->
+<!--            </page>-->
 
-            <page string="2/ Outlays / Terminal costs / MOORING">
-                <group string="Outlays / Terminal costs / MOORING">
-                     <field name="mooring"/>
-                     <field name="per_each"/>
-                     <field name="traffic_due"/>
-                </group>
-            </page>
+<!--            <page string="2/ Outlays / Terminal costs / MOORING">-->
+<!--                <group string="Outlays / Terminal costs / MOORING">-->
+<!--                     <field name="mooring"/>-->
+<!--                     <field name="per_each"/>-->
+<!--                     <field name="traffic_due"/>-->
+<!--                </group>-->
+<!--            </page>-->
 
-            <page string="3/ Outlays / OTHER PORT EXPENSE">
-                <group string="3/ Outlays / OTHER PORT EXPENSE">
-                     <field name="customs_boarding"/>
-                     <field name="piloting_thro_trip"/>
-                     <field name="trans_ship_sanitation"/>
-                     <field name="piloting_thro_night"/>
-                     <field name="trans_piloting_thro_trip"/>
-                     <field name="trans_immi_thro_trip"/>
-                     <field name="customs_supervision"/>
-                     <field name="accomodation_trans_pilot"/>
-                     <field name="port_health"/>
-                     <field name="accomodation_trans_port_health"/>
-                     <field name="immi_formality"/>
-                </group>
-            </page>
+<!--            <page string="3/ Outlays / OTHER PORT EXPENSE">-->
+<!--                <group string="3/ Outlays / OTHER PORT EXPENSE">-->
+<!--                     <field name="customs_boarding"/>-->
+<!--                     <field name="piloting_thro_trip"/>-->
+<!--                     <field name="trans_ship_sanitation"/>-->
+<!--                     <field name="piloting_thro_night"/>-->
+<!--                     <field name="trans_piloting_thro_trip"/>-->
+<!--                     <field name="trans_immi_thro_trip"/>-->
+<!--                     <field name="customs_supervision"/>-->
+<!--                     <field name="accomodation_trans_pilot"/>-->
+<!--                     <field name="port_health"/>-->
+<!--                     <field name="accomodation_trans_port_health"/>-->
+<!--                     <field name="immi_formality"/>-->
+<!--                </group>-->
+<!--            </page>-->
 
 
-            <page string="Services">
-                <group string="Services">
-                     <field name="agency_fees"/>
-                </group>
-            </page>
+<!--            <page string="Services">-->
+<!--                <group string="Services">-->
+<!--                     <field name="agency_fees"/>-->
+<!--                </group>-->
+<!--            </page>-->
 
 
           </xpath>
