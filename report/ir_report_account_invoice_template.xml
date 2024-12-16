@@ -5,17 +5,25 @@
         <t t-foreach="docs" t-as="o">
             <t t-call="web.external_layout">
                 <div class="page">
-                    <div class="oe_structure"/>
-                    <h2>Rapport de Dossier de Transit</h2>
+                    <div class="header">
+                    <h1>Shipping Services Quote</h1>
+                    <p>Quote Ref: <t t-esc="o.quote_ref"/></p>
+                    <p>Our File Number: <t t-esc="o.file_number"/></p>
+                </div>
                     <div class="row mt-4 mb-2" id="product_information">
                         <div class="col-12">
                             <table class="table table-sm o_main_table table-borderless mt-4">
-                                 <thead>
-        <tr>
-            <th>Champ</th>
-            <th>Détails</th>
-        </tr>
-    </thead>
+                      <div class="port-details">
+                    <h3>Port Details</h3>
+<!--                    <p>Port/Airport Of Loading: <t t-esc="o.loading_port"/></p>-->
+<!--                    <p>Port/Airport Of Discharge: <t t-esc="o.discharge_port"/></p>-->
+                    <p>Vessel: <t t-esc="o.vessel_id"/></p>
+                    <p>GRT: <t t-esc="o.weight_grt"/></p>
+                    <p>DRT: <t t-esc="o.folder_id.weight_drt"/></p>
+                    <p>Max Draft: <t t-esc="o.vessel_draft "/></p>
+                    <p>Ship's Volume: <t t-esc="o.folder_id.volum_vessel"/> cbm</p>
+                </div>
+
     <tbody>
         <tr>
             <td>Quote Ref</td>
