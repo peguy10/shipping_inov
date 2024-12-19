@@ -57,7 +57,11 @@ class FolderTransit(models.Model):
     sale_ids = fields.One2many(string='Proformas', comodel_name='sale.order', inverse_name='folder_id')
     sales_count = fields.Integer('Proformas', compute='compute_sales_ids', store=True)
     
-    
+
+    @api.depends('vessel_draft','vessel_loa','vessel_beam')
+    def _get_data_vessel(self):
+        for record in self:
+            record.volum_vessel = record.vessel_draft * record.vessel_loa * record.vessel_beam
     @api.depends('sale_ids')
     def compute_sales_ids(self):
         for record in self:

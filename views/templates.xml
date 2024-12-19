@@ -6,11 +6,14 @@
           <field name="inherit_id" ref="sale.view_order_form" />
           <field name="arch" type="xml">
               <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="ref_customer"/>
                 <field name="folder_id" readonly="1"/>
+                <field name="vessel_id" readonly="1"/>
                 <field name="weight_grt" readonly="1"/>
                 <field name="vessel_loa" readonly="1"/>
                 <field name="vessel_beam" readonly="1"/>
                 <field name="vessel_draft" readonly="1"/>
+                <field name="vessel_qty" readonly="1"/>
                 <field name="volume" readonly="1"/>
                 <field name="days"/>
                 <field name="shipping_use" column_invisible="1"/>

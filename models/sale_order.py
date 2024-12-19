@@ -19,6 +19,7 @@ class SaleTransit(models.Model):
         'folder.transit',
         string='Dossier',
         )
+    ref_customer = fields.Char(string="N° référence Client", store=True)
     vessel_id = fields.Many2one("vessel.transit",related="folder_id.vessel", strong="Navire", )
     weight_grt = fields.Float(related="folder_id.weight_grt", strong="GRT", store=True)
     vessel_loa = fields.Float(related="folder_id.vessel_loa", strong="LOA" , store=True)
@@ -198,89 +199,91 @@ class SaleTransit(models.Model):
         line28=self.order_line.filtered(lambda line:line.product_id.id==prod28.id)
 
         volume = self.volume
+        grt = self.weight_grt
+        qty = self.vessel_qty
         if prod1 :
-            line1.price_unit = 0.063 * volume * 655
+            line1.price_unit = 0.063 * volume * 655.957
 
         if prod2 :
-            line2.price_unit = 0.063 * volume * 655
+            line2.price_unit = 0.0047 * volume * 655.957
 
         if prod3 :
-            line3.price_unit = 0.063 * volume * 655
+            line3.price_unit = 0.063 * volume * 655.957
 
         if prod4 :
-            line4.price_unit = 0.063 * volume * 655
+            line4.price_unit = 0.0047 * volume * 655.957
 
         if prod5 :
-            line5.price_unit = 0.063 * volume * 655
+            line5.price_unit = 87.6 * line5.product_uom_qty * 655.957
 
         if prod6 :
-            line6.price_unit = 0.063 * volume * 655
+            line6.price_unit = 30 * line6.product_uom_qty  * 655.957
 
         if prod7 :
-            line7.price_unit = 0.063 * volume * 655
+            line7.price_unit = 87.6 * line7.product_uom_qty * 655.957
 
         if prod8 :
-            line8.price_unit = 0.063 * volume * 655
+            line8.price_unit = 30 * line8.product_uom_qty  * 655.957
 
         if prod9 :
-            line9.price_unit = 0.063 * volume * 655
+            line9.price_unit = 51 * 655.957
 
         if prod10 :
-            line10.price_unit = 0.063 * volume * 655
+            line10.price_unit = 0.015 * volume * 655.957
 
         if prod11 :
-            line11.price_unit = 0.063 * volume * 655
+            line11.price_unit = 0.014 * qty * 655.957
 
         if prod12 :
-            line12.price_unit = 0.063 * volume * 655
+            line12.price_unit = 0.079 * grt * 655.957
 
         if prod13 :
-            line13.price_unit = 0.063 * volume * 655
+            line13.price_unit = 182.94 * 655.957
 
         if prod14 :
-            line14.price_unit = 0.063 * volume * 655
+            line14.price_unit = 0.063 * volume * 655.957
 
         if prod15 :
-            line15.price_unit = 0.063 * volume * 655
+            line15.price_unit = 0.063 * volume * 655.957
 
         if prod16 :
-            line16.price_unit = 0.063 * volume * 655
+            line16.price_unit = 0.063 * volume * 655.957
 
         if prod17 :
-            line17.price_unit = 0.063 * volume * 655
+            line17.price_unit = 0.063 * volume * 655.957
 
         if prod18 :
-            line18.price_unit = 0.063 * volume * 655
+            line18.price_unit = 0.063 * volume * 655.957
 
         if prod19 :
-            line19.price_unit = 0.063 * volume * 655
+            line19.price_unit = 0.063 * volume * 655.957
 
         if prod20 :
-            line20.price_unit = 0.063 * volume * 655
+            line20.price_unit = 0.063 * volume * 655.957
 
         if prod21 :
-            line21.price_unit = 0.063 * volume * 655
+            line21.price_unit = 0.063 * volume * 655.957
 
         if prod22 :
-            line22.price_unit = 0.063 * volume * 655
+            line22.price_unit = 0.063 * volume * 655.957
 
         if prod23 :
-            line23.price_unit = 0.063 * volume * 655
+            line23.price_unit = 0.063 * volume * 655.957
 
         if prod24:
-            line24.price_unit = 0.063 * volume * 655
+            line24.price_unit = 0.063 * volume * 655.957
 
         if prod25:
-            line25.price_unit = 0.063 * volume * 655
+            line25.price_unit = 0.063 * volume * 655.957
 
         if prod26:
-            line26.price_unit = 0.063 * volume * 655
+            line26.price_unit = 0.063 * volume * 655.957
 
         if prod27:
-            line27.price_unit = 0.063 * volume * 655
+            line27.price_unit = 0.063 * volume * 655.957
 
         if prod28:
-            line28.price_unit = 0.063 * volume * 655
+            line28.price_unit = 0.063 * volume * 655.957
 
         # if line1 and line2 and line3 and line4:
         #     line4.update({
@@ -307,7 +310,7 @@ class Saleorderline(models.Model):
     
     price_usd = fields.Float(
         string="Taux (Euro)",
-        digits='Product Price',default=655.0)
+        digits='Product Price',default=655.957)
     
     price_usd_subtotal = fields.Float(
         string="Montant (Euro) ",
