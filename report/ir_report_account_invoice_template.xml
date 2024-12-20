@@ -1,212 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<template id="report_folder_transit">
-    <t t-call="web.html_container">
-        <t t-foreach="docs" t-as="o">
-            <t t-call="web.external_layout">
-                <div class="page">
-                    <div class="oe_structure"/>
-<!--                    <h2>Rapport de Dossier de Transit</h2>-->
-                    <div class="row mt-4 mb-2" id="product_information">
-                        <div class="col-12">
-                            <div class="row mt-4 mb-2" id="product_information">
-                        <div class="col-12">
-                              <div class="port-details">
-                                <h3>Client Name : <t t-esc="o.partner_id.complete_name"/></h3>
-                              </div>
-                            <table class="table table-sm o_main_table table-borderless mt-4">
-                                 <thead style="display: table-row-group">
-                                    <tr>
-                                        <td colspan="4">Services Details</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4"  class="text-center">Shipping Services</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Quote Ref:</td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.name"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Our File Number:</td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.ref_customer"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Vessel: </td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.vessel_id"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>GRT: </td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.weight_grt"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>DRT: </td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.folder_id.weight_drt"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Max Draft:  </td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.vessel_draft "/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>LOA: </td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.vessel_loa "/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>BOA: </td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.folder_id.vessel_beam"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Taxable Draft: </td>
-                                        <td></td>
-                                        <td colspan="2"></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ship's Volume:</td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.folder_id.volum_vessel"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>BOA: </td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.folder_id.vessel_beam"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Number Days in KK1: </td>
-                                        <td>DAYS</td>
-                                        <td colspan="2"><t t-esc="o.days"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Quantity : </td>
-                                        <td>MTS</td>
-                                        <td><t t-esc="o.vessel_qty"/></td>
-                                        <td>Bbls</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Operation : </td>
-                                        <td></td>
-                                        <td colspan="2">LOADING CRUDE OIL</td>
-                                        <td>CONFIRM CARGO QUANTITY</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Invoicing Currency : </td>
-                                        <td></td>
-                                        <td colspan="2"><t t-esc="o.currency_id.display_name"/></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>ROE  : </td>
-                                        <td></td>
-                                        <td colspan="2"></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Invoicing Party : </td>
-                                        <td></td>
-                                        <td colspan="2"></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th name="th_description" class="text-start">Nom du Produit</th>
-                                        <th name="th_quantity" class="text-end">REF</th>
-                                        <th name="th_priceunit" class="text-end">Prix Unitaire</th>
-                                        <th name="th_subtotal" class="text-end">
-                                            <span>Montant</span>
-                                        </th>
-                                        <th class="text-end">EURO</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+    <template id="report_folder_transit">
+            <link rel="stylesheet" type="text/css" href="/inov_shipping/static/src/css/template.css"/>
 
-                                    <t t-set="current_subtotal" t-value="0"/>
-                                    <t t-foreach="o.order_line" t-as="line">
-                                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/>
-                                        <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
-                                             <t t-if="not line.display_type">
-                                                <td name="td_name"><span t-field="line.name">Bacon Burger</span></td>
-                                                <td name="td_quantity" class="text-end">
-<!--                                                    <span t-field="line.product_uom_qty">3</span>-->
-                                                    <span t-field="line.product_uom">units</span>
-                                                    <span t-if="line.product_packaging_id">
-                                                        (<span t-field="line.product_packaging_qty" t-options='{"widget": "integer"}'/> <span t-field="line.product_packaging_id"/>)
-                                                    </span>
-                                                </td>
-                                                <td name="td_priceunit" class="text-end">
-                                                    <span t-field="line.price_unit">3</span>
-                                                </td>
-                                                <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
-                                                    <span t-field="line.price_subtotal">27.00</span>
-                                                </td>
-                                                 <td>
-                                                     <span t-field="line.price_usd_subtotal">0.00</span>
-                                                 </td>
-                                             </t>
-                                            <t t-elif="line.display_type == 'line_section'">
-                                                <td name="td_section_line" colspan="99">
-                                                    <span t-field="line.name">A section title</span>
-                                                </td>
-                                                <t t-set="current_section" t-value="line"/>
-                                                <t t-set="current_subtotal" t-value="0"/>
-                                            </t>
-                                            <t t-elif="line.display_type == 'line_note'">
-                                                <td name="td_note_line" colspan="99">
-                                                    <span t-field="line.name">A note, whose content usually applies to the section or product above.</span>
-                                                </td>
-                                            </t>
-                                        </tr>
-<!--                                        <t t-if="current_section and ((line_index + 1) < len(o.order_line) and o.order_line[line_index + 1].display_type == 'line_section') and not line.is_downpayment">-->
-<!--                                            <tr class="is-subtotal text-end">-->
-<!--                                                <td name="td_section_subtotal" colspan="99">-->
-<!--                                                    <strong class="mr16">Subtotal</strong>-->
-<!--&lt;!&ndash;                                                    <span t-esc="current_subtotal" t-value="current_subtotal">0.00</span>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                    <span t-field="line.currency_id">XAF</span>&ndash;&gt;-->
-<!--                                                </td>-->
-<!--                                            </tr>-->
-<!--                                        </t>-->
-                                    </t>
-                                </tbody>
-                            </table>
-                            <div class="clearfix" name="so_total_summary">
-                                <div id="total" class="row" name="total">
-                                    <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
-                                        <table class="table table-sm table-borderless">
-                                            <!-- Tax totals -->
-                                            <t t-set="tax_totals" t-value="o.tax_totals"/>
-                                            <t t-call="sale.document_tax_totals"/>
-                                        </table>
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <!--                    <h2>Rapport de Dossier de Transit</h2>-->
+                            <div class="row mt-4 mb-2" id="product_information">
+                                <div class="col-12">
+                                    <div class="row mt-4 mb-2" id="product_information">
+                                        <div class="col-12">
+                                            <div class="port-details">
+                                                <h3>Client Name :
+                                                    <t t-esc="o.partner_id.complete_name"/>
+                                                </h3>
+                                            </div>
+                                            <table border="1" class="table table-sm o_main_table table-borderless mt-4">
+                                                <thead style="display: table-row-group">
+                                                    <tr class="section-title">
+                                                        <td colspan="4">Services Details</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">Shipping Services</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Quote Ref:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.name"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Our File Number:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.ref_customer"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Vessel:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.vessel_id"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>GRT:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.weight_grt"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>DRT:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.folder_id.weight_drt"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Max Draft:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.vessel_draft "/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>LOA:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.vessel_loa "/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>BOA:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.folder_id.vessel_beam"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Taxable Draft:</td>
+                                                        <td></td>
+                                                        <td colspan="2"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ship's Volume:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.folder_id.volum_vessel"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>BOA:</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.folder_id.vessel_beam"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Number Days in KK1:</td>
+                                                        <td>DAYS</td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.days"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Quantity :</td>
+                                                        <td>MTS</td>
+                                                        <td>
+                                                            <t t-esc="o.vessel_qty"/>
+                                                        </td>
+                                                        <td>Bbls</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Operation :</td>
+                                                        <td></td>
+                                                        <td colspan="2">LOADING CRUDE OIL</td>
+                                                        <td>CONFIRM CARGO QUANTITY</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Invoicing Currency :</td>
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <t t-esc="o.currency_id.display_name"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>ROE :</td>
+                                                        <td></td>
+                                                        <td colspan="2"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Invoicing Party :</td>
+                                                        <td></td>
+                                                        <td colspan="2"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th name="th_description" class="text-start">Nom du Produit</th>
+                                                        <th name="th_quantity" class="text-end">REF</th>
+                                                        <th name="th_priceunit" class="text-end">Prix Unitaire</th>
+                                                        <th name="th_subtotal" class="text-end">
+                                                            <span>Montant</span>
+                                                        </th>
+                                                        <th class="text-end">EURO</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <t t-set="current_subtotal" t-value="0"/>
+                                                    <t t-foreach="o.order_line" t-as="line">
+                                                        <t t-set="current_subtotal"
+                                                           t-value="current_subtotal + line.price_subtotal"/>
+                                                        <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                                            <t t-if="not line.display_type">
+                                                                <td name="td_name">
+                                                                    <span t-field="line.name">Bacon Burger</span>
+                                                                </td>
+                                                                <td name="td_quantity" class="text-end">
+                                                                    <!--                                                    <span t-field="line.product_uom_qty">3</span>-->
+                                                                    <span t-field="line.product_uom">units</span>
+                                                                    <span t-if="line.product_packaging_id">
+                                                                        (
+                                                                        <span t-field="line.product_packaging_qty"
+                                                                              t-options='{"widget": "integer"}'/>
+                                                                        <span t-field="line.product_packaging_id"/>)
+                                                                    </span>
+                                                                </td>
+                                                                <td name="td_priceunit" class="text-end">
+                                                                    <span t-field="line.price_unit">3</span>
+                                                                </td>
+                                                                <td t-if="not line.is_downpayment" name="td_subtotal"
+                                                                    class="text-end o_price_total">
+                                                                    <span t-field="line.price_subtotal">27.00</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span t-field="line.price_usd_subtotal">0.00</span>
+                                                                </td>
+                                                            </t>
+                                                            <t t-elif="line.display_type == 'line_section'">
+                                                                <td name="td_section_line" colspan="99">
+                                                                    <span t-field="line.name">A section title</span>
+                                                                </td>
+                                                                <t t-set="current_section" t-value="line"/>
+                                                                <t t-set="current_subtotal" t-value="0"/>
+                                                            </t>
+                                                            <t t-elif="line.display_type == 'line_note'">
+                                                                <td name="td_note_line" colspan="99">
+                                                                    <span t-field="line.name">A note, whose content
+                                                                        usually applies to the section or product above.
+                                                                    </span>
+                                                                </td>
+                                                            </t>
+                                                        </tr>
+                                                        <!--                                        <t t-if="current_section and ((line_index + 1) < len(o.order_line) and o.order_line[line_index + 1].display_type == 'line_section') and not line.is_downpayment">-->
+                                                        <!--                                            <tr class="is-subtotal text-end">-->
+                                                        <!--                                                <td name="td_section_subtotal" colspan="99">-->
+                                                        <!--                                                    <strong class="mr16">Subtotal</strong>-->
+                                                        <!--&lt;!&ndash;                                                    <span t-esc="current_subtotal" t-value="current_subtotal">0.00</span>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;                                                    <span t-field="line.currency_id">XAF</span>&ndash;&gt;-->
+                                                        <!--                                                </td>-->
+                                                        <!--                                            </tr>-->
+                                                        <!--                                        </t>-->
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                            <div class="clearfix" name="so_total_summary">
+                                                <div id="total" class="row" name="total">
+                                                    <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                                                        <table class="table table-sm table-borderless">
+                                                            <!-- Tax totals -->
+                                                            <t t-set="tax_totals" t-value="o.tax_totals"/>
+                                                            <t t-call="sale.document_tax_totals"/>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                        </div>
-                    </div>
-                </div>
+                    </t>
+                </t>
             </t>
-        </t>
-    </t>
-</template>
+    </template>
 
 </odoo>

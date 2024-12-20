@@ -1,0 +1,97 @@
+/* template.css */
+
+/* Style général pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Style pour les titres */
+h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+/* Style pour les tableaux */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #007bff;
+    color: black;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tr:hover {
+    background-color: #ddd;
+}
+
+/* Style pour les sections de produit */
+.port-details {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Style pour les colonnes */
+.col-12 {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+/* Style pour les éléments de texte */
+.text-center {
+    text-align: center;
+}
+
+.text-end {
+    text-align: right;
+}
+
+.text-start {
+    text-align: left;
+}
+
+/* Style pour les notes et sections */
+.o_line_note {
+    font-style: italic;
+    background-color: #f9f9f9;
+}
+
+.o_line_section {
+    font-weight: bold;
+    background-color: #e9ecef;
+}
+
+/* Style pour les résumés */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
